@@ -1,0 +1,3 @@
+{
+  "extends": "@moneymingle/typescript-config/base.json"
+}
