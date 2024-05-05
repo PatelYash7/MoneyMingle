@@ -17,6 +17,12 @@ export const authOptions = {
                     label: 'Password',
                     type: 'password',
                     placeholder: 'Enter your password'
+                },
+                email:{
+                    label:'Email',
+                    type:'email',
+                    placeholder:'Enter your email'
+
                 }
             },
             // Adding User credentials type
@@ -62,10 +68,17 @@ export const authOptions = {
     ],
     secret:process.env.NEXTAUTH_SECRET || "Jai Shree Ram",
     callbacks:{
+        jwt:async ({user,token}:any)=>{
+            if(user){
+                token.uid=user.id;
+            }
+            return token
+        },
         // Type adding needed
-        async session({token,session}:any){
-            session.user.id = token.sub
-
+        async session({token,session,user}:any){
+            if(user){
+                session.user.id = token.uid
+            }
             return session
         }
     }
