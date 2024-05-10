@@ -1,5 +1,6 @@
 "use client"
 import { Button } from "./button";
+import newUser from "next-auth/next"
 interface AppbarProps{
   user?:{
     name?:string |null
@@ -15,6 +16,9 @@ export const Appbar = ({ user,onSignin,onSignout }: AppbarProps) => {
         </div>
         <div className="flex flex-col justify-center pt-2">
             <Button onClick={user ? onSignout : onSignin}>{user ? "Logout" : "Login"}</Button>
+        </div>
+        <div className="flex flex-col justify-center pt-2">
+        <Button onClick={()=>{}}>{user ? "Logout" : "Login"}</Button>
         </div>
     </div>
   );

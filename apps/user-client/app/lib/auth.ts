@@ -2,6 +2,7 @@ import prisma from '@moneymingle/db/client'
 import  CredentialsProvider  from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt'
 import { pages } from 'next/dist/build/templates/app-page';
+import { signIn } from 'next-auth/react';
 
 export const authOptions = {
     providers:[
@@ -38,9 +39,9 @@ export const authOptions = {
                     const passwordValidation = await bcrypt.compare(credentials.password,exsistingUser.password);
                     if(passwordValidation){
                         return {
-                            id:exsistingUser.id,
+                            id:exsistingUser.id.toString(),
                             name:exsistingUser.name,
-                            email:exsistingUser.email
+                            email:exsistingUser.email,
                         }
                     }
                     return null
@@ -67,20 +68,15 @@ export const authOptions = {
             }
         })
     ],
-    secret:process.env.NEXTAUTH_SECRET || "Jai Shree Ram",
+    secret:process.env.NEXTAUTH_SECRET || "Jaishreeram",
     callbacks:{
-        jwt:async ({user,token}:any)=>{
-            if(user){
-                token.uid=user.id;
-            }
-            return token
-        },
         // Type adding needed
         async session({token,session,user}:any){
-            if(user){
-                session.user.id = token.uid
-            }
+            session.user.id = token.sub
             return session
         }
+    },
+    pages:{
+        // signIn:'/auth/signin',
     }
 }

@@ -4,10 +4,10 @@ import { authOptions } from "../../lib/auth";
 
 export const GET = async () => {
     const session = await getServerSession(authOptions);
+
     if (session.user) {
         return NextResponse.json({
-            user: session.user,
-            id:session.user.id
+            user: session.user
         })
     }
     return NextResponse.json({
