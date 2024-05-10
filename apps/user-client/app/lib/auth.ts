@@ -1,6 +1,7 @@
 import prisma from '@moneymingle/db/client'
 import  CredentialsProvider  from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt'
+import { pages } from 'next/dist/build/templates/app-page';
 
 export const authOptions = {
     providers:[
@@ -16,13 +17,13 @@ export const authOptions = {
                 password:{
                     label: 'Password',
                     type: 'password',
-                    placeholder: 'Enter your password'
+                    placeholder: 'Enter your password',
+                    required:true
                 },
                 email:{
                     label:'Email',
                     type:'email',
-                    placeholder:'Enter your email'
-
+                    placeholder:'Enter your email',
                 }
             },
             // Adding User credentials type
@@ -30,7 +31,7 @@ export const authOptions = {
                 const hashedPassword = await bcrypt.hash(credentials.password,10)
                 const exsistingUser = await prisma.user.findFirst({
                     where:{
-                        number:credentials.phone
+                        email:credentials.email,
                     }
                 });
                 if(exsistingUser){
