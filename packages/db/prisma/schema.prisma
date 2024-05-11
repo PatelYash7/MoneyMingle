@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,18 +7,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 model User {
-  id        String  @id @default(uuid())
-  email     String? @unique
-  name      String?
-  number    String  @unique
-  password  String
+  id                String  @id @default(uuid()) //PK
+  email             String? @unique
+  name              String?
+  number            String  @unique
+  password          String
+  OnRampTransaction OnRampTransaction[] //relation field
+  Balance           Balance?
 }
 
 model Merchant {
-  id       String  @id @default(uuid())
+  id       String  @id @default(uuid())  
   email    String  @unique
   name     String?
   authType AuthType
+}
+
+model OnRampTransaction {
+  id        String          @id @default(uuid())
+  status    OnRampStatus
+  token     String          @unique
+  provider  String
+  amount    Int
+  startTime DateTime
+  user      User            @relation(fields: [userId], references: [id]) //relation fields
+  userId    String  //foreign key
+}
+
+enum OnRampStatus {
+  SUCCESS
+  PROCESSING
+  FAILED
+}
+
+model Balance {
+  id      String      @id @default(uuid())
+  userId  String      @unique
+  amount  Int
+  locked  Int
+  user    User        @relation(fields: [userId],references: [id])
 }
 
 enum AuthType{
