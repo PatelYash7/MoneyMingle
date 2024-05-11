@@ -38,11 +38,7 @@ export const authOptions = {
                 if(exsistingUser){
                     const passwordValidation = await bcrypt.compare(credentials.password,exsistingUser.password);
                     if(passwordValidation){
-                        return {
-                            id:exsistingUser.id.toString(),
-                            name:exsistingUser.name,
-                            email:exsistingUser.email,
-                        }
+                        return exsistingUser
                     }
                     return null
                 };
@@ -54,11 +50,7 @@ export const authOptions = {
                             password:hashedPassword
                         }
                     })
-                    return {
-                        id:user.id,
-                        name:user.name,
-                        email:user.email
-                    }
+                    return user
                 } catch (e) {
                     console.log(e)
                 }
@@ -70,8 +62,12 @@ export const authOptions = {
     ],
     secret:process.env.NEXTAUTH_SECRET || "Jaishreeram",
     callbacks:{
-        // Type adding needed
-        async session({token,session,user}:any){
+        // Type adding needed  add fields in JWT
+        async jwt ({token , user}:any){
+            
+            return token
+        },
+        async session({token,session}:any){
             session.user.id = token.sub
             return session
         }
