@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
+import { AppbarClient } from "../components/AppbarClient";
 
 export const metadata: Metadata = {
   title: "Money Mingle",
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body>
+        <AppbarClient/>
           {children}
         </body>
       </Providers>
