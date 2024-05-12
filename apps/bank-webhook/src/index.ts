@@ -1,5 +1,5 @@
 import express from "express";
-import db from "@moneymingle/db/client"
+import prisma from "@moneymingle/db/client"
 import { paymentInformationZod } from "@moneymingle/zod/zod";
 const app = express();
 
@@ -13,8 +13,8 @@ app.get("/bankHook",async (req, res) => {
       amount: req.body.amount,
     };
     try {
-        await db.$transaction([
-            db.balance.update({
+        await prisma.$transaction([
+            prisma.balance.update({
                 where:{
                     userId:paymentInformation.userId
                 },
@@ -24,7 +24,7 @@ app.get("/bankHook",async (req, res) => {
                     }
                 }
             }),
-            db.onRampTransaction.update({
+            prisma.onRampTransaction.update({
                 where:{
                     token:paymentInformation.token
                 },
@@ -38,7 +38,7 @@ app.get("/bankHook",async (req, res) => {
         })
     } catch (err) {
         console.log(err)
-        await db.onRampTransaction.update({
+        await prisma.onRampTransaction.update({
             where:{
                 token:paymentInformation.token
             },
@@ -56,3 +56,7 @@ app.get("/bankHook",async (req, res) => {
     });
   }
 });
+
+app.listen(3003,()=>{
+    console.log("Listening on port 3003")
+})
