@@ -3,6 +3,11 @@ import prisma from "@moneymingle/db/client"
 import { paymentInformationZod } from "@moneymingle/zod/zod";
 const app = express();
 
+app.get("/",(req,res)=>{
+    res.json({
+        Message:"Hello world"
+    })
+})
 app.get("/bankHook",async (req, res) => {
   const isValid = paymentInformationZod.safeParse(req.body);
 
