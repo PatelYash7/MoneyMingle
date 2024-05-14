@@ -10,17 +10,17 @@ import { useState } from "react";
 const SUPPORTED_BANKS = [
   {
     name: "HDFC BANK",
-    redirectURL: "https://netbanking.hdfcbank.com",
+    redirectURL: "https://netbanking.hdfcbank.com/",
   },
   {
     name: "Axis Bank",
-    redirectUrl: "https://www.axisbank.com/",
+    redirectURL: "https://www.axisbank.com/",
   },
 ];
 
 export const AddMoneyCard = () => {
   const [redirectUrl, setRedirectUrl] = useState(
-    SUPPORTED_BANKS[0]?.redirectUrl
+    SUPPORTED_BANKS[0]?.redirectURL
   );
   return (
     <Card title="Add Money">
@@ -32,9 +32,9 @@ export const AddMoneyCard = () => {
         />
         <div className="py-4 text-left">Bank</div>
         <Select
-          onSelect={(value) => {
+          onSelect={async (value) => {
             setRedirectUrl(
-              SUPPORTED_BANKS.find((x) => x.name === value)?.redirectUrl || ""
+              SUPPORTED_BANKS.find((x) => x.name == value)?.redirectURL ||""
             );
           }}
           options={SUPPORTED_BANKS.map((x) => ({
