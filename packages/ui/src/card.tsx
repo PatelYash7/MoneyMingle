@@ -10,7 +10,7 @@ export function Card({
   return (
     <div className="p-4 border">
       <h1 className="pb-2 text-xl border-b">{title}</h1>
-      <p>{children}</p>
+      <div>{children}</div>
     </div>
   );
 }
