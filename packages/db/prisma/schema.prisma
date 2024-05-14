@@ -43,7 +43,7 @@ enum OnRampStatus {
 model Balance {
   id      String      @id @default(uuid())
   userId  String      @unique
-  amount  Int
+  amount  Int         @default(0)
   locked  Int
   user    User        @relation(fields: [userId],references: [id])
 }

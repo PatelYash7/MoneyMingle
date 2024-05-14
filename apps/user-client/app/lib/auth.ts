@@ -64,7 +64,6 @@ export const authOptions = {
     callbacks:{
         // Type adding needed  add fields in JWT
         async jwt ({token , user}:any){
-            
             return token
         },
         async session({token,session}:any){
