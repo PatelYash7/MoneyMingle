@@ -1,8 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import prisma from "@moneymingle/db/client";
-import { time } from "console";
-import { stat } from "fs";
 import { AddMoneyCard } from "../../../components/AddMoneyCard";
 import { BalanceCard } from "../../../components/BalanceCard";
 import { OnRampTransactions } from "../../../components/OnRampTransaction";
@@ -11,7 +9,7 @@ async function getBalance() {
   const session = await getServerSession(authOptions);
   const balance = await prisma.balance.findFirst({
     where: {
-      id: session?.user?.id,
+      userId:session?.id
     },
   });
   return {

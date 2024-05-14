@@ -4,7 +4,6 @@ import { Button } from "@moneymingle/ui/button";
 import { Card } from "@moneymingle/ui/card";
 import { Select } from "@moneymingle/ui/select";
 import { TextInput } from "@moneymingle/ui/textinput";
-import { redirect } from "next/dist/server/api-utils";
 import { useState } from "react";
 
 const SUPPORTED_BANKS = [

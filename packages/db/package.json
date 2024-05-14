@@ -12,7 +12,10 @@
   "dependencies": {
     "@prisma/client": "^5.13.0"
   },
-  "exports":{
-    "./client":"./src/index.ts"
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "exports": {
+    "./client": "./src/index.ts"
   }
 }
