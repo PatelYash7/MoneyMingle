@@ -9,7 +9,7 @@ async function getBalance() {
   const session = await getServerSession(authOptions);
   const balance = await prisma.balance.findFirst({
     where: {
-      userId:session?.id
+      userId:session?.user?.id
     },
   });
   return {
@@ -19,6 +19,7 @@ async function getBalance() {
 }
 async function getOnRampTransaction() {
   const session = await getServerSession(authOptions);
+  console.log(session.user.id);
   const txn = await prisma.onRampTransaction.findMany({
     where: {
       userId: session?.user?.id,
@@ -34,6 +35,7 @@ async function getOnRampTransaction() {
 
 export default async function () {
   const balance = await getBalance();
+  console.log(balance)
   const transactions = await getOnRampTransaction();
   return (
     <div className="w-screen">

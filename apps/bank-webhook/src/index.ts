@@ -1,20 +1,24 @@
 import express from "express";
+import bodyParser from "body-parser";
 import prisma from "@moneymingle/db/client"
 import { paymentInformationZod } from "@moneymingle/zod/zod";
 const app = express();
+app.use(bodyParser.json());
 
 app.get("/",(req,res)=>{
     res.json({
         Message:"Hello world"
     })
 })
-app.get("/bankHook",async (req, res) => {
-  const isValid = paymentInformationZod.safeParse(req.body);
+app.post("/bankHook",async (req, res) => {
+    // console.log(req.body)
+    const isValid = paymentInformationZod.safeParse(req.body);
 
-  if (isValid) {
+    if (isValid.success) {
+    console.log(isValid.data);
     const paymentInformation = {
       token: req.body.token,
-      userId: req.body.user_Identifier,
+      userId: req.body.userId,
       amount: req.body.amount,
     };
     try {
