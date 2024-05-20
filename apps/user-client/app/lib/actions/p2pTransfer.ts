@@ -54,6 +54,14 @@ export const p2pTransfer = async(number:string,amount:Number)=>{
                     }
                 }
             })
+            await tx.p2pTransfer.create({
+                data:{
+                    SenderUserId:senderId,
+                    ReceiverUserId:Receiver.id,
+                    amount:Number(amount),
+                    timestamp:new Date()
+,                }
+            })
         }
 
     })
