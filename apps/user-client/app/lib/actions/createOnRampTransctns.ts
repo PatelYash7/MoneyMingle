@@ -28,6 +28,16 @@ export async function createOnRampTransctns(amount:number,provider:string){
             token
         }
     })
+    await db.balance.update({
+        where:{
+            userId:userId,
+        },
+        data:{
+            locked:amount
+        }
+    })
+        
+            
     return {
         message:"On ramp transaction Added",
         status:true
