@@ -1,4 +1,4 @@
-import { HomeIcon, TransactionsIcon, TransferIcon } from "../../components/Icons";
+import { HomeIcon, PeerToPeerIcon, TransactionsIcon, TransferIcon } from "../../components/Icons";
 import { SidebarItem } from "../../components/SidebarElement";
 
 export default function({children}:{children:React.ReactNode}):JSX.Element{
@@ -10,6 +10,7 @@ export default function({children}:{children:React.ReactNode}):JSX.Element{
                 <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Home" />
                 <SidebarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer" />
                 <SidebarItem href={"/transactions"} icon={<TransactionsIcon />} title="Transactions" />
+                <SidebarItem href={"/p2p"} icon={<PeerToPeerIcon />} title="P2P transfer" />
             </div>
         </div>
             {children}
