@@ -3,7 +3,6 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "../authoptions/auth"
 import db from "@moneymingle/db/client"
-import { OnRampTransactions } from "../../../components/OnRampTransaction";
 
 
 export async function createOnRampTransctns(amount:number,provider:string){
