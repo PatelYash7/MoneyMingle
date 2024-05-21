@@ -5,7 +5,7 @@ import { AddMoneyCard } from "../../../components/AddMoneyCard";
 import { BalanceCard } from "../../../components/BalanceCard";
 import { OnRampTransactions } from "../../../components/OnRampTransaction";
 
-async function getBalance() {
+export async function getBalance() {
   const session = await getServerSession(authOptions);
   const balance = await prisma.balance.findFirst({
     where: {
@@ -19,7 +19,6 @@ async function getBalance() {
 }
 async function getOnRampTransaction() {
   const session = await getServerSession(authOptions);
-  console.log(session.user.id);
   const txn = await prisma.onRampTransaction.findMany({
     where: {
       userId: session?.user?.id,
