@@ -1,32 +1,14 @@
-import { getServerSession } from "next-auth";
 import { BalanceCard } from "../../../components/BalanceCard";
 import { SendCard } from "../../../components/SendCard";
 import { getBalance } from "../transfer/page";
-import db from "@moneymingle/db/client"
-import { authOptions } from "../../lib/authoptions/auth";
-import { OnRampTransactions } from "../../../components/OnRampTransaction";
 import { Transactions } from "../../../components/TransactionDetails";
+import { getTransactionDetails } from "../../lib/actions/transactionDetails";
 
-export const getP2PTransfer = async ()=>{
-    const session = await getServerSession(authOptions);
-    const userId = await session.user.id;
-    const txns = await db.p2pTransfer.findMany({
-        where:{
-            SenderUserId:userId
-        }
-    })
-    return txns.map((t)=>({
-        time:t.timestamp,
-        SenderID:t.SenderUserId,
-        ReceiverID:t.ReceiverUserId,
-        Amount:t.amount
-    }))
-}
 
 
 export default async function () {
     const balance = await getBalance();
-    const txn =await getP2PTransfer();
+    const txn =await getTransactionDetails();
     return (
       <div className="w-screen">
         <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold">
