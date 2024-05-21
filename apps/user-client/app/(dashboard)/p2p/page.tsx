@@ -20,10 +20,10 @@ export default async function () {
           </div>
           <div>
             <BalanceCard amount={balance.amount} locked={balance.locked} />
-          </div>
           <div className="pt-4">
             {/* <OnRampTransactions transactions={txn} /> */}
             <Transactions transactions={txn}/>
+          </div>
           </div>
 
         </div>
