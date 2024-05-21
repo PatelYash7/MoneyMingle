@@ -34,7 +34,6 @@ async function getOnRampTransaction() {
 
 export default async function () {
   const balance = await getBalance();
-  console.log(balance)
   const transactions = await getOnRampTransaction();
   return (
     <div className="w-screen">

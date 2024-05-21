@@ -33,7 +33,6 @@ export const p2pTransfer = async(number:string,amount:Number)=>{
                 message:"Insufficient Balance"
             }
         }else{
-            console.log("Hello")
             await tx.balance.update({
                 where:{
                     userId:senderId
