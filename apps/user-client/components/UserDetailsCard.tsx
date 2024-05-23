@@ -10,7 +10,7 @@ export function UserDetailsCard({ user }: { user: User }) {
   const [editView, SeteditView] = useState(false);
   const [name, setname] = useState("");
   return (
-    <Card title="User Name">
+    <Card title="User Name" width="min-w-72">
       <div className="pt-2 ">
         <div className="flex justify-between gap-2">
         {user.name ? (
@@ -20,7 +20,7 @@ export function UserDetailsCard({ user }: { user: User }) {
             <button
             className=""
             onClick={() => {
-                SeteditView(true);
+                SeteditView(prev=>!prev);
             }}
             >
             <ChangeIcon/>
