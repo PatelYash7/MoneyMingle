@@ -22,7 +22,7 @@ export function SendCard() {
     });
   };
   return (
-    <Card title="Send" bg=" bg-purple-200">
+    <Card title="Send" bg="bg-purple-200">
       <div className="pt-2 min-w-72">
         <TextInput
           placeholder={"Number"}
