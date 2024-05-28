@@ -1,18 +1,11 @@
-import { UserDetailsCard } from "../../../components/UserDetailsCard";
-import { getUserDetails } from "../../lib/actions/getUserdetails";
-
+import { getGreeting } from "../../lib/actions/setGreetings";
 
 export default async function () {
-  const User = await getUserDetails();
+  const greet = getGreeting();
   return (
     <div className="w-full">
       <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold">
-        User Dashboard
-      </div>
-      <div className="flex h-screen gap-4 ">
-        <div>
-          <UserDetailsCard user={User} />
-        </div>
+        {greet}
       </div>
     </div>
   );
