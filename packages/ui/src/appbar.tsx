@@ -1,6 +1,5 @@
 "use client"
 import { Button } from "./button";
-import newUser from "next-auth/next"
 interface AppbarProps{
   user?:{
     name?:string |null
