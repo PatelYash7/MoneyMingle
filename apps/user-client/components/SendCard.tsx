@@ -8,7 +8,6 @@ import { p2pTransfer } from "../app/lib/actions/p2pTransfer";
 import { mobileVerification } from "../app/lib/actions/mobileVerification";
 import { User } from "../types/User";
 
-
 export function SendCard() {
   const [TransactionCall, SetTransactionCall] = useState({
     number: "",
@@ -34,7 +33,7 @@ export function SendCard() {
               number: value,
             });
           }}
-          readonly={verifiedUser?.id?true:false}
+          readonly={verifiedUser?.id ? true : false}
         />
         <div
           className="p-1 mb-2 text-sm max-w-fit"
@@ -45,14 +44,13 @@ export function SendCard() {
         >
           {verifiedUser?.id ? (
             <div className="flex gap-2">
-                <div className="px-2 font-bold text-green-200 bg-green-500 rounded cursor-default w-fit">
+              <div className="px-2 font-bold text-green-200 bg-green-500 rounded cursor-default w-fit">
                 Verified
-                </div>
-                {/* Not working */}
-                <div
-                className="px-2 font-bold bg-purple-400 rounded">
-                    change details
-                </div>
+              </div>
+              {/* Not working */}
+              <div className="px-2 font-bold bg-purple-400 rounded">
+                change details
+              </div>
             </div>
           ) : (
             <div className="font-semibold cursor-pointer">Verify User</div>
@@ -72,24 +70,32 @@ export function SendCard() {
         <div className="pt-4 ">
           {verifiedUser?.id ? (
             <div className="flex flex-col gap-2">
-              <div className="px-2 border-2 border-gray-400" >
-                <div className="flex gap-2 font-bold border-b-2 border-gray-400">Username:<div className="font-semibold">{verifiedUser.name}</div></div>
-                <div className="flex gap-2 font-bold">User ID:<div className="font-semibold">{verifiedUser.id.toLowerCase().substring(0, 8)}</div></div>
+              <div className="px-2 border-2 border-gray-400">
+                <div className="flex gap-2 font-bold border-b-2 border-gray-400">
+                  Username:
+                  <div className="font-semibold">{verifiedUser.name}</div>
+                </div>
+                <div className="flex gap-2 font-bold">
+                  User ID:
+                  <div className="font-semibold">
+                    {verifiedUser.id.toLowerCase().substring(0, 8)}
+                  </div>
+                </div>
               </div>
               <div className="flex items-center justify-center">
                 <Button
                   onClick={async () => {
                     await p2pTransfer(
                       TransactionCall.number,
-                      Number(TransactionCall.amount) * 100
+                      Number(TransactionCall.amount) * 100,
                     );
                     await setVerifiedUser({
-                        id: "",
-                        email: "",
-                        name: "",
-                        number: "",
-                        password: "",
-                      })
+                      id: "",
+                      email: "",
+                      name: "",
+                      number: "",
+                      password: "",
+                    });
                     await ClearInput();
                   }}
                 >

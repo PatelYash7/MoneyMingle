@@ -5,12 +5,12 @@ export const Transactions = async ({
   transactions,
 }: {
   transactions: {
-    id:string
+    id: string;
     timestamp: Date;
     amount: number;
     SenderUserId: string;
     ReceiverUserId: string;
-    Sent:Boolean
+    Sent: Boolean;
   }[];
 }) => {
   if (!transactions.length) {
@@ -25,7 +25,7 @@ export const Transactions = async ({
       <div className="pt-2">
         {transactions.map((e) => (
           <div key={e.timestamp.toString()} className="overflow-y-auto">
-            {e.Sent? (
+            {e.Sent ? (
               <div className="flex justify-between p-2 my-2 bg-red-400 rounded">
                 <div>
                   <div className="text-sm font-bold">Amount Sent</div>

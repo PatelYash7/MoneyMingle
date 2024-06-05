@@ -13,38 +13,41 @@ export function UserDetailsCard({ user }: { user: User }) {
     <Card title="User Name" width="min-w-72">
       <div className="pt-2 ">
         <div className="flex justify-between gap-2">
-        {user.name ? (
+          {user.name ? (
             <div className="text-2xl font-bold">{user.name}</div>
-        ) : (""
-        )}
-            <button
+          ) : (
+            ""
+          )}
+          <button
             className=""
             onClick={() => {
-                SeteditView(prev=>!prev);
+              SeteditView((prev) => !prev);
             }}
-            >
-            <ChangeIcon/>
+          >
+            <ChangeIcon />
           </button>
         </div>
         {!editView ? (
           ""
         ) : (
-            <div className="flex items-center justify-center gap-2">
-
-          <TextInput
-            label=""
-            placeholder={"Enter Name"}
-            onChange={(value) => {
+          <div className="flex items-center justify-center gap-2">
+            <TextInput
+              label=""
+              placeholder={"Enter Name"}
+              onChange={(value) => {
                 setname(value);
-            }}
+              }}
             />
-            <button 
-             className="h-full px-1 py-2 mt-4 text-center text-white rounded bg-violet-700 "
-            onClick={async ()=>{
-                 await setUsername({id:user.id,name:name})
-                location.reload()
-        }}>Change</button>
-            </div>
+            <button
+              className="h-full px-1 py-2 mt-4 text-center text-white rounded bg-violet-700 "
+              onClick={async () => {
+                await setUsername({ id: user.id, name: name });
+                location.reload();
+              }}
+            >
+              Change
+            </button>
+          </div>
         )}
       </div>
     </Card>

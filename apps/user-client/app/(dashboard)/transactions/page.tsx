@@ -1,5 +1,3 @@
-export default function(){
-    return <div>
-        Hello
-    </div>
+export default function () {
+  return <div>Hello</div>;
 }

@@ -9,12 +9,12 @@ export async function getBalance() {
   const session = await getServerSession(authOptions);
   const balance = await prisma.balance.findFirst({
     where: {
-      userId:session?.user?.id
+      userId: session?.user?.id,
     },
   });
   return {
-      amount: balance?.amount || 0,
-      locked: balance?.locked || 0,
+    amount: balance?.amount || 0,
+    locked: balance?.locked || 0,
   };
 }
 async function getOnRampTransaction() {
@@ -51,6 +51,6 @@ export default async function () {
           </div>
         </div>
       </div>
-  </>
+    </>
   );
 }

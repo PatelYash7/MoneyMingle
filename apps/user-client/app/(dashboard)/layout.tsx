@@ -33,10 +33,7 @@ export default function ({
           />
         </div>
       </div>
-      <div className="w-screen pl-4 pr-1 m-4">
-        {children}
-
-      </div>
+      <div className="w-screen pl-4 pr-1 m-4">{children}</div>
     </div>
   );
 }

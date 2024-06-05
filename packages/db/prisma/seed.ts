@@ -9,12 +9,12 @@ async function main() {
       number: "9999999999",
       password: "$2a$10$jKE8ENhTg3mKlpTt0f3/JuYjPd7o.uxXNZ2t2tZfaKLDHJVCC8REG",
       name: "alice",
-      email:"alice@gmail.com",
-      Balance:{
-        create:{
-            amount:1000,
-            locked:3000
-        }
+      email: "alice@gmail.com",
+      Balance: {
+        create: {
+          amount: 1000,
+          locked: 3000,
+        },
       },
       OnRampTransaction: {
         create: {
@@ -34,12 +34,12 @@ async function main() {
       number: "9999999998",
       password: "$2a$10$i/fpXhOoRctbZxGOQJFS3.nuHAkLaJl/fWWA/ytQIbaUQVl8dlMXq",
       name: "bob",
-      email:"bob@gmail.com",
-      Balance:{
-        create:{
-            amount:1000,
-            locked:3000
-        }
+      email: "bob@gmail.com",
+      Balance: {
+        create: {
+          amount: 1000,
+          locked: 3000,
+        },
       },
       OnRampTransaction: {
         create: {

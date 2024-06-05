@@ -5,13 +5,13 @@ export const TextInput = ({
   onChange,
   label,
   value,
-  readonly
+  readonly,
 }: {
   placeholder: string;
   onChange: (value: string) => void;
   label: string;
-  value?:string;
-  readonly?:boolean
+  value?: string;
+  readonly?: boolean;
 }) => {
   return (
     <div className="pt-2">
