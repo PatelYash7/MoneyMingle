@@ -1,8 +1,6 @@
 import prisma from '@moneymingle/db/client'
 import  CredentialsProvider  from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt'
-import { pages } from 'next/dist/build/templates/app-page';
-import { signIn } from 'next-auth/react';
 
 export const authOptions = {
     providers:[
@@ -63,7 +61,7 @@ export const authOptions = {
     secret:process.env.NEXTAUTH_SECRET || "Jaishreeram",
     callbacks:{
         // Type adding needed  add fields in JWT
-        async jwt ({token , user}:any){
+        async jwt ({token}:any){
             return token
         },
         async session({token,session}:any){
