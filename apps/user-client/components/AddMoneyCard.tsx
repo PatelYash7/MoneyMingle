@@ -39,7 +39,7 @@ export const AddMoneyCard = () => {
         <div className="py-4 text-left">Bank</div>
         <Select
           onSelect={async (value) => {
-            await SetTransaction({ ...transaction, provider: value });
+            setRedirectUrl(value);
           }}
           options={SUPPORTED_BANKS.map((x) => ({
             key: x.name,
