@@ -1,50 +1,12 @@
 import Link from "next/link";
 import { Card } from "../component/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "../component/ui/avatar";
+import { Navbar } from "./homeNavbar/Navbar";
 
 export function HomePage() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <header className="flex items-center px-4 lg:px-6 h-14">
-        <Link
-          href="#"
-          className="flex items-center justify-center"
-          prefetch={false}
-        >
-          <MountainIcon className="w-6 h-6" />
-          <span className="sr-only">Acme Payments</span>
-        </Link>
-        <nav className="flex gap-4 ml-auto sm:gap-6">
-          <Link
-            href="#signin"
-            className="text-sm font-medium hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Signin
-          </Link>
-          <Link
-            href="#"
-            className="text-sm font-medium hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Pricing
-          </Link>
-          <Link
-            href="#"
-            className="text-sm font-medium hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Security
-          </Link>
-          <Link
-            href="#"
-            className="text-sm font-medium hover:underline underline-offset-4"
-            prefetch={false}
-          >
-            Contact
-          </Link>
-        </nav>
-      </header>
+      <Navbar />
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">

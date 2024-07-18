@@ -1,3 +1,4 @@
+import { AppbarClient } from "../../component/AppbarClient";
 import {
   HomeIcon,
   PeerToPeerIcon,
@@ -13,6 +14,7 @@ export default function ({
 }): JSX.Element {
   return (
     <div className="flex bg-bgMain">
+      <AppbarClient />
       <div className="w-56 min-h-screen border-r border-slate-300 pt-28">
         <div className="">
           <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Home" />
