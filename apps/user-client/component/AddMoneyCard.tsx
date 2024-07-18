@@ -5,7 +5,7 @@ import { Card } from "@moneymingle/ui/card";
 import { Select } from "@moneymingle/ui/select";
 import { TextInput } from "@moneymingle/ui/textinput";
 import { useState } from "react";
-import { createOnRampTransctns } from "../app/lib/actions/createOnRampTransctns";
+import { createOnRampTransctns } from "../lib/actions/createOnRampTransctns";
 
 const SUPPORTED_BANKS: { name: string; redirectURL: string }[] = [
   {

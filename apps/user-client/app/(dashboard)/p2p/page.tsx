@@ -1,8 +1,8 @@
-import { BalanceCard } from "../../../components/BalanceCard";
-import { SendCard } from "../../../components/SendCard";
+import { BalanceCard } from "../../../component/BalanceCard";
+import { SendCard } from "../../../component/SendCard";
 import { getBalance } from "../transfer/page";
-import { Transactions } from "../../../components/TransactionDetails";
-import { getTransactionDetails } from "../../lib/actions/transactionDetails";
+import { Transactions } from "../../../component/TransactionDetails";
+import { getTransactionDetails } from "../../../lib/actions/transactionDetails";
 
 export default async function () {
   const balance = await getBalance();

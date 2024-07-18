@@ -3,8 +3,8 @@ import {
   PeerToPeerIcon,
   TransactionsIcon,
   TransferIcon,
-} from "../../components/Icons";
-import { SidebarItem } from "../../components/SidebarElement";
+} from "../../component/Icons";
+import { SidebarItem } from "../../component/SidebarElement";
 
 export default function ({
   children,

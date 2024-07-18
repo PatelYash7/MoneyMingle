@@ -4,9 +4,9 @@ import { Button } from "@moneymingle/ui/button";
 import { Card } from "@moneymingle/ui/card";
 import { TextInput } from "@moneymingle/ui/textinput";
 import { useState } from "react";
-import { p2pTransfer } from "../app/lib/actions/p2pTransfer";
-import { mobileVerification } from "../app/lib/actions/mobileVerification";
 import { User } from "../types/User";
+import { mobileVerification } from "../lib/actions/mobileVerification";
+import { p2pTransfer } from "../lib/actions/p2pTransfer";
 
 export function SendCard() {
   const [TransactionCall, SetTransactionCall] = useState({

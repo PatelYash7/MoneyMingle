@@ -3,8 +3,8 @@ import { Card } from "@moneymingle/ui/card";
 import { TextInput } from "@moneymingle/ui/textinput";
 import { User } from "../types/User";
 import { useState } from "react";
-import { setUsername } from "../app/lib/actions/setUserName";
 import { ChangeIcon } from "./Icons";
+import { setUsername } from "../lib/actions/setUserName";
 
 export function UserDetailsCard({ user }: { user: User }) {
   const [editView, SeteditView] = useState(false);

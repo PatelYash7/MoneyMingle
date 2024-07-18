@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/authoptions/auth";
 import prisma from "@moneymingle/db/client";
-import { AddMoneyCard } from "../../../components/AddMoneyCard";
-import { BalanceCard } from "../../../components/BalanceCard";
-import { OnRampTransactions } from "../../../components/OnRampTransaction";
+import { AddMoneyCard } from "../../../component/AddMoneyCard";
+import { BalanceCard } from "../../../component/BalanceCard";
+import { OnRampTransactions } from "../../../component/OnRampTransaction";
 
 export async function getBalance() {
   const session = await getServerSession(authOptions);

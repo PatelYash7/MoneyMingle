@@ -1,6 +1,6 @@
-import { FindUser } from "../../../components/FindUser";
-import { PortfolioCard } from "../../../components/PortfolioCard";
-import { getGreeting } from "../../lib/actions/setGreetings";
+import { FindUser } from "../../../component/FindUser";
+import { PortfolioCard } from "../../../component/PortfolioCard";
+import { getGreeting } from "../../../lib/actions/setGreetings";
 
 export default async function () {
   const greet = getGreeting();
