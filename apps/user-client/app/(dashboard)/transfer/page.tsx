@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../lib/authoptions/auth";
+import { authOptions } from "../../../lib/authoptions/auth";
 import prisma from "@moneymingle/db/client";
 import { AddMoneyCard } from "../../../components/AddMoneyCard";
 import { BalanceCard } from "../../../components/BalanceCard";
