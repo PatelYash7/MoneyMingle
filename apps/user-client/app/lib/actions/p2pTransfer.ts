@@ -22,7 +22,7 @@ export const p2pTransfer = async (number: string, amount: Number) => {
       message: "Receiver Not Found",
     };
   }
-  await db.$transaction(async (tx:any) => {
+  await db.$transaction(async (tx: any) => {
     //Locking for Record by
     // tx.$queryRaw
     const senderBalance = await tx.balance.findFirst({

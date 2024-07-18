@@ -6,12 +6,14 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "db:generate":"cd packages/db && npx prisma generate && cd ../.. "
+    "db:generate": "cd packages/db && npx prisma generate && cd ../.. ",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@moneymingle/eslint-config": "*",
     "@moneymingle/typescript-config": "*",
     "@types/bcrypt": "^5.0.2",
+    "husky": "^9.1.0",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },
