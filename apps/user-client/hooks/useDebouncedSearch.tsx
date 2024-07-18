@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { User } from "../types/User";
-import { getFriendsDetails } from "../app/lib/actions/getFriendsDetails";
+import { getFriendsDetails } from "../lib/actions/getFriendsDetails";
 
 export const useDebouncedSearch = (value: string) => {
   const [debouncedValue, setDebouncedValue] = useState("");

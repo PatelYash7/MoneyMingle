@@ -5,9 +5,9 @@ export const Navbar = () => {
   const router = useRouter();
   return (
     <header className="flex items-center px-4 lg:px-6 h-14">
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center gap-4">
         <MountainIcon className="w-6 h-6" />
-        <span className="sr-only">Acme Payments</span>
+        <span className="text-xl font-bold text-white ">Money Mingle</span>
       </div>
       <nav className="flex gap-4 ml-auto sm:gap-6">
         <div
@@ -18,14 +18,13 @@ export const Navbar = () => {
         >
           Signin
         </div>
-        <div className="text-sm font-medium hover:underline underline-offset-4">
-          Pricing
-        </div>
-        <div className="text-sm font-medium hover:underline underline-offset-4">
-          Security
-        </div>
-        <div className="text-sm font-medium hover:underline underline-offset-4">
-          Contact
+        <div
+          onClick={() => {
+            router.push("/api/auth/signin");
+          }}
+          className="text-sm font-medium hover:underline underline-offset-4"
+        >
+          Signup
         </div>
       </nav>
     </header>

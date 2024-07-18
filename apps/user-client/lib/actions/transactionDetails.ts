@@ -6,7 +6,7 @@ import db from "@moneymingle/db/client";
 
 export const getTransactionDetails = async () => {
   const session = await getServerSession(authOptions);
-  const userId = session.user.id;
+  const userId = session?.user?.id;
 
   const sentTransactions = await db.p2pTransfer.findMany({
     where: {

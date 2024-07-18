@@ -3,7 +3,7 @@ import { Card } from "../component/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "../component/ui/avatar";
 import { Navbar } from "./homeNavbar/Navbar";
 
-export function HomePage() {
+export async function HomePage() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <Navbar />
