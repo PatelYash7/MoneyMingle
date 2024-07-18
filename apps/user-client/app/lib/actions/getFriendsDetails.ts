@@ -2,12 +2,12 @@
 import db from "@moneymingle/db/client";
 
 export const getFriendsDetails = async (value: string) => {
-    console.log(value)
+  console.log(value);
   const Friends = await db.user.findMany({
     where: {
-      number:{
-        startsWith:value
-      }
+      number: {
+        startsWith: value,
+      },
     },
   });
   if (!Friends) {
