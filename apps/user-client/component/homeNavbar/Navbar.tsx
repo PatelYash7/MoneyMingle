@@ -1,8 +1,6 @@
 "use client";
-import { useRouter } from "next/navigation";
-
+import { signIn } from "next-auth/react";
 export const Navbar = () => {
-  const router = useRouter();
   return (
     <header className="flex items-center px-4 lg:px-6 h-14">
       <div className="flex items-center justify-center gap-4">
@@ -14,7 +12,9 @@ export const Navbar = () => {
       <nav className="flex gap-4 ml-auto sm:gap-6">
         <div
           onClick={() => {
-            router.push("/api/auth/signin");
+            signIn(undefined, {
+              callbackUrl: "/dashboard",
+            });
           }}
           className="text-sm font-medium cursor-pointer hover:underline underline-offset-4"
         >
@@ -22,7 +22,9 @@ export const Navbar = () => {
         </div>
         <div
           onClick={() => {
-            router.push("/api/auth/signin");
+            signIn(undefined, {
+              callbackUrl: "/dashboard",
+            });
           }}
           className="text-sm font-medium cursor-pointer hover:underline underline-offset-4"
         >
