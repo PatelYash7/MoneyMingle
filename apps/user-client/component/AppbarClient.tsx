@@ -9,12 +9,16 @@ export function AppbarClient() {
   return (
     <div className="">
       <Appbar
+        route={async () => {
+          router.push("/home");
+        }}
         onSignin={async () => {
           await signIn();
         }}
         onSignout={async () => {
-          await signOut();
-          window.location.replace("/");
+          await signOut({
+            callbackUrl: "/home",
+          });
         }}
         user={session.data?.user}
       />
