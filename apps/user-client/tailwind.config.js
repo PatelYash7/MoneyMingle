@@ -23,6 +23,7 @@ module.exports = {
         body: ["var(--font-body)", ...fontFamily.mono],
       },
       colors: {
+        headMain:'#9179cb',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

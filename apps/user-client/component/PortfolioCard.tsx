@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 export const PortfolioCard = ({ balance }: { balance: number }) => {
   const router = useRouter();
   return (
-    <div className="px-4 py-2 bg-white rounded-lg">
+    <div className="px-4 py-2">
       <div className="text-lg font-bold">
         <div>Portfolio</div>
         <div className="font-sans text-5xl font-bold text-gray-700 ">
@@ -24,7 +24,12 @@ export const PortfolioCard = ({ balance }: { balance: number }) => {
           <button className="px-4 py-2 font-bold text-black bg-red-400 rounded-xl">
             Receive
           </button>
-          <button className="px-4 py-2 font-bold text-black bg-blue-400 rounded-xl">
+          <button
+            onClick={() => {
+              router.replace("/transfer");
+            }}
+            className="px-4 py-2 font-bold text-black bg-blue-400 rounded-xl"
+          >
             Deposit
           </button>
           <button className="px-4 py-2 font-bold text-black bg-gray-400 rounded-xl">

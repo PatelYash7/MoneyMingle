@@ -1,4 +1,3 @@
-import { getServerSession } from "next-auth";
 import { AppbarClient } from "../../component/AppbarClient";
 import {
   HomeIcon,
@@ -7,8 +6,6 @@ import {
   TransferIcon,
 } from "../../component/Icons";
 import { SidebarItem } from "../../component/SidebarElement";
-import { authOptions } from "../../lib/authoptions/auth";
-import { redirect } from "next/navigation";
 
 export default function ({
   children,

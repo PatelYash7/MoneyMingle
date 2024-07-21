@@ -9,9 +9,7 @@ export default async function () {
   const txn = await getTransactionDetails();
   return (
     <>
-      <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold">
-        Transfer
-      </div>
+      <div className="pt-8 mb-8 text-4xl font-bold text-headMain">Transfer</div>
       <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-2">
         <div>
           <SendCard />
