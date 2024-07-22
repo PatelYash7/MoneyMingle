@@ -21,7 +21,7 @@ export function SendCard() {
     });
   };
   return (
-    <Card title="Send" bg="bg-purple-200">
+    <Card title="Send">
       <div className="pt-2 min-w-72">
         <TextInput
           placeholder={"Number"}
@@ -35,25 +35,39 @@ export function SendCard() {
           }}
           readonly={verifiedUser?.id ? true : false}
         />
-        <div
-          className="p-1 mb-2 text-sm max-w-fit"
-          onClick={async () => {
-            const bool = await mobileVerification(TransactionCall.number);
-            await setVerifiedUser(bool);
-          }}
-        >
+        <div className="p-1 mb-2 text-sm max-w-fit">
           {verifiedUser?.id ? (
             <div className="flex gap-2">
               <div className="px-2 font-bold text-green-200 bg-green-500 rounded cursor-default w-fit">
                 Verified
               </div>
               {/* Not working */}
-              <div className="px-2 font-bold bg-purple-400 rounded">
+              <div
+                onClick={() => {
+                  setVerifiedUser({
+                    id: "",
+                    name: "",
+                    email: "",
+                    number: "",
+                    password: "",
+                  });
+                  ClearInput();
+                }}
+                className="px-2 font-bold bg-purple-400 rounded"
+              >
                 change details
               </div>
             </div>
           ) : (
-            <div className="font-semibold cursor-pointer">Verify User</div>
+            <div
+              onClick={async () => {
+                const bool = await mobileVerification(TransactionCall.number);
+                await setVerifiedUser(bool);
+              }}
+              className="font-semibold cursor-pointer"
+            >
+              Verify User
+            </div>
           )}
         </div>
         <TextInput
@@ -78,7 +92,10 @@ export function SendCard() {
                 <div className="flex gap-2 font-bold">
                   User ID:
                   <div className="font-semibold">
-                    {verifiedUser.id.toLowerCase().substring(0, 8)}
+                    {"xxxx" +
+                      verifiedUser.id
+                        .toLowerCase()
+                        .substring(verifiedUser.id.length - 4)}
                   </div>
                 </div>
               </div>

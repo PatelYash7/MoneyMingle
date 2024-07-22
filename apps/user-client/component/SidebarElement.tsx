@@ -17,7 +17,7 @@ export const SidebarItem = ({
 
   return (
     <div
-      className={`flex ${selected ? " text-blueMain" : " text-slate-500"} cursor-pointer hover:text-blueMain p-2 pl-8`}
+      className={`flex ${selected ? " text-blueMain" : " text-slate-500"} cursor-pointer hover:text-blueMain p-2`}
       onClick={() => {
         router.push(href);
       }}

@@ -6,6 +6,7 @@ import { Select } from "@moneymingle/ui/select";
 import { TextInput } from "@moneymingle/ui/textinput";
 import { useState } from "react";
 import { createOnRampTransctns } from "../lib/actions/createOnRampTransctns";
+import { Label } from "./ui/label";
 
 const SUPPORTED_BANKS: { name: string; redirectURL: string }[] = [
   {
@@ -46,7 +47,7 @@ export const AddMoneyCard = () => {
             value: x.name,
           }))}
         />
-        <div className="flex justify-center pt-4">
+        <div className="flex justify-center pt-4 border-white">
           <Button
             onClick={async () => {
               const res = await createOnRampTransctns(

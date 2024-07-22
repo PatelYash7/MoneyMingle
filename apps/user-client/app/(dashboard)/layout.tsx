@@ -15,9 +15,9 @@ export default function ({
   return (
     <div>
       <AppbarClient />
-      <div className="flex bg-bgMain">
-        <div className="w-56 min-h-screen border-r border-slate-300 pt-28">
-          <div className="">
+      <div className="flex bg-bgMain ">
+        <div className="min-h-[calc(100vh-60.8px)] border-r border-slate-300">
+          <div className="pl-16 pr-4 mt-28">
             <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Home" />
             <SidebarItem
               href={"/transfer"}
@@ -36,7 +36,7 @@ export default function ({
             />
           </div>
         </div>
-        <div className="w-screen pl-4 pr-1 m-4">{children}</div>
+        <div className="w-screen py-4 pl-4 pr-16">{children}</div>
       </div>
     </div>
   );

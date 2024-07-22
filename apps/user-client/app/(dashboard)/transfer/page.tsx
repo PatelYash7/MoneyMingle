@@ -38,7 +38,7 @@ export default async function () {
   return (
     <>
       <div className="pt-8 mb-8 text-4xl font-bold text-headMain">Transfer</div>
-      <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
           <AddMoneyCard />
         </div>

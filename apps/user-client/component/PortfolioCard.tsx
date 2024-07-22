@@ -4,12 +4,10 @@ import { useRouter } from "next/navigation";
 export const PortfolioCard = ({ balance }: { balance: number }) => {
   const router = useRouter();
   return (
-    <div className="px-4 py-2">
+    <div className="px-4 py-2 text-black">
       <div className="text-lg font-bold">
-        <div>Portfolio</div>
-        <div className="font-sans text-5xl font-bold text-gray-700 ">
-          ₹ {balance / 100}{" "}
-        </div>
+        <div className="font-mono text-lg font-semibold">Portfolio</div>
+        <div className="font-sans text-5xl font-bold ">₹ {balance / 100} </div>
       </div>
       <div className="flex items-center justify-center py-4 my-8 border-t-2">
         <div className="flex gap-4 px-4 py-4 ">

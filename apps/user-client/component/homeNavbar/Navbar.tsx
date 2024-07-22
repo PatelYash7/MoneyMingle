@@ -2,7 +2,7 @@
 import { signIn } from "next-auth/react";
 export const Navbar = () => {
   return (
-    <header className="flex items-center px-4 lg:px-6 h-14">
+    <header className="flex items-center px-4 lg:px-16 h-14">
       <div className="flex items-center justify-center gap-4">
         <MountainIcon className="w-6 h-6" />
         <span className="text-xl font-bold text-white cursor-pointer ">
