@@ -5,8 +5,12 @@ import db from "@moneymingle/db/client";
 import { authOptions } from "../authoptions/auth";
 
 export const p2pTransfer = async (number: string, amount: Number) => {
+  console.log(number);
+  console.log(amount);
   const session = await getServerSession(authOptions);
+  console.log(session);
   const senderId = session.user.id;
+  console.log(senderId);
   if (!senderId) {
     return {
       message: "Sender Not Authenticated",
@@ -33,26 +37,27 @@ export const p2pTransfer = async (number: string, amount: Number) => {
         message: "Insufficient Balance",
       };
     } else {
-      await tx.balance.update({
+      await tx.balance.updateMany({
         where: {
           userId: senderId,
         },
         data: {
           amount: {
-            decrement: Number(amount),
+            decrement: amount,
           },
         },
       }),
-        await tx.balance.update({
+        await tx.balance.updateMany({
           where: {
             userId: Receiver.id,
           },
           data: {
             amount: {
-              increment: Number(amount),
+              increment: amount,
             },
           },
         });
+      console.log("Hello");
       await tx.p2pTransfer.create({
         data: {
           SenderUserId: senderId,

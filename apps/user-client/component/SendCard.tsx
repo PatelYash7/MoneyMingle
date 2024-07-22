@@ -38,7 +38,7 @@ export function SendCard() {
         <div className="p-1 mb-2 text-sm max-w-fit">
           {verifiedUser?.id ? (
             <div className="flex gap-2">
-              <div className="px-2 font-bold text-green-200 bg-green-500 rounded cursor-default w-fit">
+              <div className="px-2 font-bold border rounded cursor-default w-fit">
                 Verified
               </div>
               {/* Not working */}
@@ -53,7 +53,7 @@ export function SendCard() {
                   });
                   ClearInput();
                 }}
-                className="px-2 font-bold bg-purple-400 rounded"
+                className="px-2 font-bold border rounded cursor-pointer"
               >
                 change details
               </div>
