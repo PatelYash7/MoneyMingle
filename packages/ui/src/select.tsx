@@ -11,10 +11,11 @@ export const Select = ({
 }) => {
   return (
     <select
+      style={{backgroundColor:'transparent'}}
       onChange={(e) => {
         onSelect(e.target.value);
       }}
-      className="border py-2 px-2 text-black  font-sans rounded block w-full p-2.5"
+      className="border-2 py-2 px-2 text-white  font-sans rounded block w-full p-2.5"
     >
       {options.map((option) => (
         <option

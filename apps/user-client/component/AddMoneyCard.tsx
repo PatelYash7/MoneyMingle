@@ -6,7 +6,6 @@ import { Select } from "@moneymingle/ui/select";
 import { TextInput } from "@moneymingle/ui/textinput";
 import { useState } from "react";
 import { createOnRampTransctns } from "../lib/actions/createOnRampTransctns";
-import { Label } from "./ui/label";
 
 const SUPPORTED_BANKS: { name: string; redirectURL: string }[] = [
   {
@@ -57,7 +56,7 @@ export const AddMoneyCard = () => {
               if (!res.status) {
                 alert(res.message);
               } else {
-                window.location.href = redirectUrl || " ";
+                // window.location.href = redirectUrl || " ";
               }
             }}
           >

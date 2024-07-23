@@ -6,10 +6,8 @@ import db from "@moneymingle/db/client";
 
 export async function createOnRampTransctns(amount: number, provider: string) {
   const session = await getServerSession(authOptions);
-  // Token Feature to be implemented which comes from the banking server
   const token = Math.random().toString();
   const userId = session.user.id;
-
   if (!userId || amount == 0) {
     return {
       message: "Failure",
@@ -26,15 +24,30 @@ export async function createOnRampTransctns(amount: number, provider: string) {
       token,
     },
   });
-  await db.balance.update({
+  const checkAccount = await db.balance.findMany({
     where: {
       userId: userId,
     },
-    data: {
-      locked: amount,
-    },
   });
-
+  if (checkAccount.length == 0) {
+    await db.balance.create({
+      data: {
+        userId: userId,
+        locked: amount,
+      },
+    });
+  } else {
+    await db.balance.update({
+      where:{
+        userId:userId
+      },
+      data:{
+        locked:{
+          increment:amount
+        }
+      }
+    });
+  }
   return {
     message: "On ramp transaction Added",
     status: true,

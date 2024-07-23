@@ -8,9 +8,9 @@ export default async function () {
   const balance = await getBalance();
   return (
     <>
-      <div className="pt-8 text-4xl font-bold text-headMain">{greet}</div>
+      <div className="pt-8 text-4xl font-bold text-secondary-foreground">{greet}</div>
       <div className="grid grid-cols-3 gap-4 my-8 max-h-[262px]">
-        <div className="grid col-span-2 rounded-md bg-secondary-foreground">
+        <div className="grid col-span-2 border rounded-md">
           <PortfolioCard balance={balance.amount} />
         </div>
         <div className="overflow-y-scroll rounded-md bg-secondary-foreground">
