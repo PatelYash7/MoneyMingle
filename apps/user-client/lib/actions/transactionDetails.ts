@@ -37,7 +37,7 @@ export const getTransactionDetails = async () => {
   allTransaction.sort((a, b) => {
     const DateA = new Date(a.timestamp).getTime();
     const DateB = new Date(b.timestamp).getTime();
-    return DateA - DateB;
+    return DateB - DateA;
   });
   return allTransaction;
 };

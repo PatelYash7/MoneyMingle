@@ -22,9 +22,9 @@ export const Transactions = async ({
   }
   return (
     <Card title="Recent Transactions">
-      <div className="pt-2">
+      <div className="h-56 pt-2 overflow-y-auto">
         {transactions.map((e) => (
-          <div key={e.timestamp.toString()} className="overflow-y-auto">
+          <div key={e.timestamp.toString()} className="">
             {e.Sent ? (
               <div className="flex justify-between p-2 my-2 text-black bg-red-300 rounded">
                 <div>

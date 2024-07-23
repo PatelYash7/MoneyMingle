@@ -50,6 +50,7 @@ export const p2pTransfer = async (number: string, amount: Number) => {
             data: {
               userId: Receiver.id,
               amount: amount,
+              locked: 0
             },
           });
         await tx.p2pTransfer.create({
