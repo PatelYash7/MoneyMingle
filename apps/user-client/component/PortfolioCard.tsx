@@ -12,28 +12,38 @@ export const PortfolioCard = ({ balance }: { balance: number }) => {
       </div>
       <div className="flex items-center justify-center py-4 my-8 border-t-2">
         <div className="flex gap-4 px-4 py-4 ">
-          <Button 
-          
-          onClick={() => {
-            router.replace("/p2p");
-          }}
-          className="px-4 py-2 text-lg font-bold text-white bg-black border rounded-[6px] hover:text-black hover:bg-primary-foreground ">
+          <Button
+            onClick={() => {
+              router.replace("/p2p");
+            }}
+            className="px-4 py-2 text-lg font-bold text-white bg-black border rounded-[6px] transition-all hover:transition-all  hover:text-black hover:bg-primary-foreground "
+          >
             Send
           </Button>
-          <button className="px-4 py-2 font-bold text-black bg-red-400 rounded-xl">
+          <Button
+            onClick={() => {
+              router.replace("/profile");
+            }}
+            className="px-4 py-2 text-lg font-bold text-white bg-black border rounded-[6px] transition-all hover:transition-all hover:text-black hover:bg-lime-300"
+          >
             Receive
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => {
               router.replace("/transfer");
             }}
-            className="px-4 py-2 font-bold text-black bg-blue-400 rounded-xl"
+            className="px-4 py-2 text-lg font-bold text-white bg-black border rounded-[6px] transition-all hover:transition-all hover:text-black hover:bg-emerald-600"
           >
             Deposit
-          </button>
-          <button className="px-4 py-2 font-bold text-black bg-gray-400 rounded-xl">
+          </Button>
+          <Button
+            onClick={() => {
+              router.replace("/transfer");
+            }}
+            className="px-4 py-2 text-lg font-bold text-white bg-black border rounded-[6px] transition-all hover:transition-all hover:text-black hover:bg-red-300"
+          >
             Debit
-          </button>
+          </Button>
         </div>
       </div>
     </div>
