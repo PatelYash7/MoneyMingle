@@ -1,3 +1,4 @@
+import { getServerSession } from "next-auth";
 import { AppbarClient } from "../../component/AppbarClient";
 import {
   HomeIcon,
@@ -6,15 +7,18 @@ import {
   TransferIcon,
 } from "../../component/Icons";
 import { SidebarItem } from "../../component/SidebarElement";
+import { authOptions } from "../../lib/authoptions/auth";
 
-export default function ({
+export default async function ({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}){
+  const session =await getServerSession(authOptions);
+  console.log(session)
   return (
     <div>
-      <AppbarClient />
+      <AppbarClient name={session.user.name} />
       <div className="flex bg-bgMain ">
         <div className="min-h-[calc(100vh-60.8px)] border-r border-slate-300">
           <div className="pl-16 pr-4 mt-28">

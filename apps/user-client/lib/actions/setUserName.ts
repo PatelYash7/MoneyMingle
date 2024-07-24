@@ -1,13 +1,17 @@
 "use server";
 import db from "@moneymingle/db/client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../authoptions/auth";
 
-export const setUsername = async ({
-  id,
+export const setUserName = async ({
+
   name,
 }: {
-  id: string;
+
   name: string;
 }) => {
+  const session = await getServerSession(authOptions);
+  const id =session.user.id;
   const data = await db.user.update({
     where: {
       id: id,
@@ -16,7 +20,12 @@ export const setUsername = async ({
       name: name,
     },
   });
+  if(data){
+    return {
+      message:"UserName Updated"
+    }
+  }
   return {
-    message: data,
+    message: "Sorry, please try again",
   };
 };
