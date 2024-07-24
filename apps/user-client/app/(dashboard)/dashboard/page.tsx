@@ -13,7 +13,7 @@ export default async function () {
         <div className="grid col-span-2 border rounded-md">
           <PortfolioCard balance={balance.amount} />
         </div>
-        <div className="overflow-y-scroll rounded-md bg-secondary-foreground">
+        <div className="overflow-y-scroll border rounded-md ">
           <FindUser />
         </div>
       </div>
