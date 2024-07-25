@@ -15,7 +15,6 @@ export default async function ({
   children: React.ReactNode;
 }){
   const session =await getServerSession(authOptions);
-  console.log(session)
   return (
     <div>
       <AppbarClient name={session.user.name} />
