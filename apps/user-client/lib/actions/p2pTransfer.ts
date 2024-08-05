@@ -5,7 +5,7 @@ import { authOptions } from "../authoptions/auth";
 
 export const p2pTransfer = async (number: string, amount: Number):Promise<{message:string}> => {
   const session = await getServerSession(authOptions);
-  const senderId = session.user.id;
+  const senderId = session?.user.id;
   if (!senderId) {
     return {
       message: "Sender Not Authenticated",

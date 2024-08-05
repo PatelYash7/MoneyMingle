@@ -11,7 +11,8 @@ export const setUserName = async ({
   name: string;
 }) => {
   const session = await getServerSession(authOptions);
-  const id =session.user.id;
+
+  const id =session?.user.id;
   const data = await db.user.update({
     where: {
       id: id,

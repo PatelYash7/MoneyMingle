@@ -1,23 +1,11 @@
 "use client";
 import { Button } from "@moneymingle/ui/button";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "../component/ui/alert-dialog";
-import { Input } from "./ui/input";
-import { useState } from "react";
-import { setUserName } from "../lib/actions/setUserName";
+import { CircleUserRound } from 'lucide-react';
 
-export function AppbarClient({name}:{name:string | null}) {
+export function AppbarClient() {
   const router = useRouter();
-  const [username, setUsername] = useState("");
   return (
     <div className="flex justify-between px-16 py-2 border-b">
       <div
@@ -27,44 +15,13 @@ export function AppbarClient({name}:{name:string | null}) {
         className="flex items-center justify-center gap-4 text-xl font-bold text-blueMain"
       >
         <MountainIcon className="w-6 h-6" />
-        MONEYMINGLE
+         MONEYMINGLE
       </div>
-      <div className="flex items-center justify-center gap-4 pt-2 ">
-        <div>
-          {name ? (
-            <div>{name}</div>
-          ) : (
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button>Set Username</Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Enter your name</AlertDialogTitle>
-                  <Input
-                    className="rounded"
-                    onChange={(e) => {
-                      setUsername(e.target.value);
-                    }}
-                  ></Input>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogAction
-                    className="rounded"
-                    onClick={async () => {
-                     const Response =await  setUserName({ name: username });
-                     if(Response){
-                      window.alert(Response.message)
-                     }
-                    }}
-                  >
-                    Submit
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          )}
+      <div className="flex items-center justify-center gap-6 pt-2 ">
+        <div className="flex items-center gap-1 cursor-pointer" onClick={()=>{router.push("/user-details")}}>
+        <CircleUserRound /> Profile
         </div>
+      
         <Button
           onClick={async () => {
             await signOut({

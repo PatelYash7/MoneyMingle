@@ -1,8 +1,9 @@
 import prisma from "@moneymingle/db/client";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
+import { NextAuthOptions } from "next-auth";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -26,7 +27,7 @@ export const authOptions = {
         },
       },
       // Adding User credentials type
-      async authorize(credentials: any) {
+      async authorize(credentials: any): Promise<any> {
         const hashedPassword = await bcrypt.hash(credentials.password, 10);
         const exsistingUser = await prisma.user.findFirst({
           where: {
@@ -64,11 +65,33 @@ export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET || "Jaishreeram",
   callbacks: {
     // Type adding needed  add fields in JWT
-    async jwt({ token }: any) {
+    async jwt({ token, user, session, trigger}) {
+      if(trigger==="update" && session.name){
+        await prisma.user.update({
+          where:{
+            id:token.id
+          },
+          data:{
+            name:session.name
+          }
+        })
+        token.name = session.name;
+      }
+      if(user){
+        token.id=user.id.toString()
+        token.name=user.name
+        token.email=user.email
+        token.number=user.number
+      }
       return token;
     },
-    async session({ token, session }: any) {
-      session.user.id = token.sub;
+    async session({ token, session }) {
+      if(token){
+        session.user.id=token.id;
+        session.user.name=token.name;
+        session.user.email=token.email;
+        session.user.number=token.number;
+      }
       return session;
     },
   },
