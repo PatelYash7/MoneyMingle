@@ -107,12 +107,10 @@ export function SendCard() {
                       TransactionCall.number,
                       Number(TransactionCall.amount) * 100
                     );
-                    console.log("Hell01")
                     if(Response){
                       alert(Response.message)
                       window.location.reload()
                     }
-                    console.log("Hello3")
                     await setVerifiedUser({
                       id: "",
                       email: "",
