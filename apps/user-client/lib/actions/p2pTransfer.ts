@@ -21,89 +21,63 @@ export const p2pTransfer = async (number: string, amount: Number) => {
       message: "Receiver Not Found",
     };
   }
+  // Checks the Balance table for the receiver,
   const checkAccount = await db.balance.findMany({
     where: {
       userId: Receiver.id,
     },
   });
   if (checkAccount.length == 0) {
-    await db.$transaction(async (tx: any) => {
-      const senderBalance = await tx.balance.findFirst({
-        where: { userId: senderId },
-      });
-      if (!senderBalance || senderBalance?.amount < Number(amount)) {
-        return {
-          message: "Insufficient Balance",
-        };
-      } else {
-        await tx.balance.update({
-          where: {
-            userId: senderId,
-          },
-          data: {
-            amount: {
-              decrement: amount,
-            },
-          },
-        }),
-          await tx.balance.create({
-            data: {
-              userId: Receiver.id,
-              amount: amount,
-              locked: 0
-            },
-          });
-        await tx.p2pTransfer.create({
-          data: {
-            SenderUserId: senderId,
-            ReceiverUserId: Receiver.id,
-            amount: Number(amount),
-            timestamp: new Date(),
-          },
-        });
-      }
-    });
-  } else {
-    await db.$transaction(async (tx: any) => {
-      //Locking for Record by
-      // tx.$queryRaw
-      const senderBalance = await tx.balance.findFirst({
-        where: { userId: senderId },
-      });
-      if (!senderBalance || senderBalance?.amount < Number(amount)) {
-        return {
-          message: "Insufficient Balance",
-        };
-      } else {
-        await tx.balance.updateMany({
-          where: {
-            userId: senderId,
-          },
-          data: {
-            amount: {
-              decrement: amount,
-            },
-          },
-        }),
-          await tx.balance.updateMany({
-            where: {
-              userId: Receiver.id,
-            },
-            data: {
-              amount: {
-                increment: amount,
-              },
-            },
-          });
-        await tx.p2pTransfer.create({
-          data: {
-            SenderUserId: senderId,
-            ReceiverUserId: Receiver.id,
-            amount: Number(amount),
-            timestamp: new Date(),
-          },
-        });
-      }
+    //Created balance table for the Receiver if No account.
+    await db.balance.create({
+      data: {
+        userId: Receiver.id,
+        amount: Number(0),
+        locked: 0,
+      },
     });
   }
+  await db.$transaction(async (tx: any) => {
+    const senderBalance = await tx.balance.findFirst({
+      where: { userId: senderId },
+    });
+    // Sender balance check
+    if (!senderBalance || senderBalance?.amount < Number(amount)) {
+      return {
+        message: "Insufficient Balance",
+      };
+    } else {
+      // Amount debited from Balance Account
+      await tx.balance.update({
+        where: {
+          userId: senderId,
+        },
+        data: {
+          amount: {
+            decrement: amount,
+          },
+        },
+      }),
+        //Amount Credited in Receiver Account
+        await tx.balance.updateMany({
+          where: {
+            userId: Receiver.id,
+          },
+          data: {
+            amount: {
+              increment: amount,
+            },
+          },
+        });
+      // Creates a Transfer Record.
+      await tx.p2pTransfer.create({
+        data: {
+          SenderUserId: senderId,
+          ReceiverUserId: Receiver.id,
+          amount: Number(amount),
+          timestamp: new Date(),
+        },
+      });
+    }
+  });
 };
