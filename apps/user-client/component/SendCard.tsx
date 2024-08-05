@@ -9,6 +9,7 @@ import { mobileVerification } from "../lib/actions/mobileVerification";
 import { p2pTransfer } from "../lib/actions/p2pTransfer";
 
 export function SendCard() {
+  const[response,SetResponse]=useState("")
   const [TransactionCall, SetTransactionCall] = useState({
     number: "",
     amount: "",
@@ -102,10 +103,16 @@ export function SendCard() {
               <div className="flex items-center justify-center">
                 <Button
                   onClick={async () => {
-                    await p2pTransfer(
+                    const Response = await p2pTransfer(
                       TransactionCall.number,
-                      Number(TransactionCall.amount) * 100,
+                      Number(TransactionCall.amount) * 100
                     );
+                    console.log("Hell01")
+                    if(Response){
+                      alert(Response.message)
+                      window.location.reload()
+                    }
+                    console.log("Hello3")
                     await setVerifiedUser({
                       id: "",
                       email: "",
