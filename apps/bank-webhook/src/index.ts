@@ -18,7 +18,6 @@ app.post("/bankHook", async (req, res) => {
       token: isValid.data?.token,
     },
   });
-  console.log(Status);
   if (isValid.success && Status?.status == "PROCESSING") {
     console.log(isValid.data);
     const paymentInformation = isValid.data;

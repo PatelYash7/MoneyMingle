@@ -5,7 +5,7 @@ import { authOptions } from "../authoptions/auth";
 
 export const mobileVerification = async (number: string) => {
   const session = await getServerSession(authOptions);
-  const currUser = session.user.id;
+  const currUser = session?.user.id;
 
   const user = await db.user.findFirst({
     where: {

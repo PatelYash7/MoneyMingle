@@ -7,7 +7,7 @@ import db from "@moneymingle/db/client";
 export async function createOnRampTransctns(amount: number, provider: string) {
   const session = await getServerSession(authOptions);
   const token = Math.random().toString();
-  const userId = session.user.id;
+  const userId = session?.user.id;
   if (!userId || amount == 0) {
     return {
       message: "Failure",

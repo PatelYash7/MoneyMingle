@@ -6,7 +6,7 @@ import { authOptions } from "../authoptions/auth";
 
 export const getFriendsDetails = async (value: string) => {
   const session = await getServerSession(authOptions);
-  const userId = session.user.id;
+  const userId = session?.user.id;
   const Friends:User[] = await db.user.findMany({
     where: {
       number: {
