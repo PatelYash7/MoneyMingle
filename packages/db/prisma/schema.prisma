@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model UserBank {
+  id            String @id @default(uuid())
+  bankingName   String @unique
+  password      String
+  name          String
+  Amount        String  @default("200000")
+}
+
 model User {
   id                String              @id @default(uuid()) //PK
   email             String?             @unique
