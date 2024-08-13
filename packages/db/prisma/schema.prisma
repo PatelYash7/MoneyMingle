@@ -8,11 +8,13 @@ datasource db {
 }
 
 model UserBank {
-  id            String @id @default(uuid())
-  bankingName   String @unique
+  id            String    @id @default(uuid())
+  bankingName   String    @unique
   password      String
   name          String
-  Amount        String  @default("200000")
+  Amount        String    @default("200000")
+  walletId      String    @unique
+  wallet        User      @relation(fields: [walletId],references: [id])
 }
 
 model User {
@@ -25,6 +27,7 @@ model User {
   Balance           Balance?
   sentTransfers     p2pTransfer[]       @relation(name: "FromUserRelation")
   receivedTransfers p2pTransfer[]       @relation(name: "ToUserRelation")
+  wallet            UserBank?           
 }
 
 model p2pTransfer {
