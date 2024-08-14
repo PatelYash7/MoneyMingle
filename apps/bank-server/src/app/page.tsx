@@ -5,7 +5,7 @@ export default function Home() {
     Hello
     <button onClick={
       ()=>{
-        window.open(`/gateway/${'jwttoken'}`, '_blank');
+        window.open(`/gateway/${'jwttoken'}`, '_blank','noopener,noreferrer,width=800,height=600'); 
       }
     }>
       Click Here
