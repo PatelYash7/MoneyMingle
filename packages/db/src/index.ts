@@ -3,7 +3,9 @@ import { PrismaClient } from "@prisma/client";
 const prismaClientSingleton = () => {
   return new PrismaClient();
 };
-
+export type PrismaTransactionalClient = Parameters<
+    Parameters<PrismaClient['$transaction']>[0]
+>[0];
 declare global {
   var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>;
 }

@@ -13,8 +13,8 @@ model UserBank {
   password      String
   name          String
   Amount        String    @default("200000")
-  walletId      String    @unique
-  wallet        User      @relation(fields: [walletId],references: [id])
+  walletId      String?    @unique
+  wallet        User?      @relation(fields: [walletId],references: [id])
 }
 
 model User {

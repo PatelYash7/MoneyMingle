@@ -1,15 +1,13 @@
 'use client'
+
+import { useRouter } from "next/navigation";
+
 export default function Home() {
+  const router =useRouter()
+  const token =localStorage.getItem('token')
   return (
-   <div className="">
-    Hello
-    <button onClick={
-      ()=>{
-        window.open(`/gateway/${'jwttoken'}`, '_blank','noopener,noreferrer,width=800,height=600'); 
-      }
-    }>
-      Click Here
-    </button>
-   </div>
+   <>
+    {token? <div>Hello</div> : router.push("/signup")}
+   </>
   );
 }
