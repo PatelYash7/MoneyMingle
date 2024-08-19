@@ -4,7 +4,7 @@ import { TextInput } from "@moneymingle/ui/textinput";
 import { User } from "../types/User";
 import { useState } from "react";
 import { ChangeIcon } from "./Icons";
-import { setUsername } from "../lib/actions/setUserName";
+import { setUserName } from "../lib/actions/setUserName";
 
 export function UserDetailsCard({ user }: { user: User }) {
   const [editView, SeteditView] = useState(false);
@@ -41,7 +41,7 @@ export function UserDetailsCard({ user }: { user: User }) {
             <button
               className="h-full px-1 py-2 mt-4 text-center text-white rounded bg-violet-700 "
               onClick={async () => {
-                await setUsername({ id: user.id, name: name });
+                await setUserName({ name: name });
                 location.reload();
               }}
             >

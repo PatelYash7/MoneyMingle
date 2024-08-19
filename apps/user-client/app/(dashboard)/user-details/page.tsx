@@ -1,5 +1,7 @@
-export default function Page(){
-    return <div>
-        User Details Page
-    </div>
+import { ProfilePage } from "../../../component/profile-page";
+
+export default function Page() {
+  return (
+    <ProfilePage/>
+  )
 }
