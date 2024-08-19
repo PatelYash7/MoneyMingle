@@ -6,6 +6,7 @@ import { Button } from "./ui/button"
 import { useState } from "react"
 import { useSession } from "next-auth/react"
 import { addBankAccount } from "../lib/actions/addBankAccount"
+import { useRouter } from "next/navigation"
 
 export function ProfilePage() {
   const[bankingName,setbankingName]=useState('')
@@ -17,6 +18,7 @@ export function ProfilePage() {
       alert(response.msg)
     }
   }
+  const router = useRouter()
   return (
     <div className="container px-4 mx-auto my-8 md:px-6 lg:px-8">
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -65,6 +67,7 @@ export function ProfilePage() {
             </CardContent>
             <CardFooter>
               <Button onClick={handleSubmit} variant="outline">Add Bank Account</Button>
+              <Button onClick={()=>{router.push('/user-details/bank-account')}} variant="outline">Check Account Details</Button>
             </CardFooter>
           </Card>
         </div>
