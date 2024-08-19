@@ -30,19 +30,19 @@ export function ProfilePage() {
             <CardContent className="space-y-4">
               <div className="grid gap-2">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" defaultValue="John Doe" />
+                <Input id="name" defaultValue={`${session.data?.user.name}`} />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" defaultValue="john@example.com" />
+                <Input id="email" type="email" defaultValue={`${session.data?.user.email}`} />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="phone">Phone Number</Label>
-                <Input id="phone" type="tel" defaultValue="+1 (555) 555-5555" />
+                <Input id="phone" type="tel" defaultValue={`${session.data?.user.number}`} />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" defaultValue="********" />
+                {/* <Label htmlFor="password">Password</Label> */}
+                {/* <Input id="password" type="password" defaultValue="********" /> */}
               </div>
             </CardContent>
             <CardFooter>
