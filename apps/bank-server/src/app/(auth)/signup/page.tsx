@@ -4,24 +4,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Page() {
+  const router = useRouter();
   const [Bname, setBname] = useState("");
   const [password, setPassword] = useState("");
   const [Name, setName] = useState("");
-  const [WalletNumber, setWalletNumber] = useState("");
   const handleSubmit = async () => {
-    console.log(Bname,password,Name,WalletNumber)
     try {
       const response = await handleSignup({
         bankingName: Bname,
         password: password,
         name: Name,
-        WalletNumber: WalletNumber,
       });
       if(response?.token){
         localStorage.setItem('token',response.token)
+        router.push("/");
       }
       alert(response?.msg);
     } catch (e) {
@@ -33,7 +33,7 @@ export default function Page() {
       <div className="flex items-center justify-center h-screen bg-background">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-center text-black text-primary-foreground">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-center text-black">
               Create an Account for MoneyMingle Finances Bank
             </h2>
             <p className="mt-2 text-sm text-center text-muted-foreground">
@@ -92,22 +92,6 @@ export default function Page() {
               type="name"
               required
               placeholder="Enter Your Name"
-              className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none focus:z-10 focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
-            />
-          </div>
-          <div>
-            <Label className="space-y-4 text-lg font-bold text-black ">
-              Wallet Number
-            </Label>
-            <Input
-              onChange={(e) => {
-                setWalletNumber(e.target.value);
-              }}
-              id="WNumber"
-              name="WNumber"
-              type="WNumber"
-              required
-              placeholder="Enter Your Number which is Used in MoneyMingle Wallet."
               className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none focus:z-10 focus:border-primary focus:outline-none focus:ring-primary sm:text-sm"
             />
           </div>
