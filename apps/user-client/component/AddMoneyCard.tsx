@@ -22,7 +22,6 @@ const SUPPORTED_BANKS = [
 
 export const AddMoneyCard = () => {
   const session = useSession()
-  
   const [provider,setProvider]=useState("HDFC BANK")
   const [amount,setAmount] = useState<number>(0)
   return (
@@ -48,8 +47,9 @@ export const AddMoneyCard = () => {
         <div className="flex justify-center pt-4 border-white">
           <Button
             onClick={async () => {
-              const token =await handleDepositTransaction({amount,provider,id:session.data?.user.id})
-              if(token){
+              const response  = await createOnRampTransctns(amount,provider);
+              const token = await handleDepositTransaction({amount,provider,id:session.data?.user.id})
+              if(token && response){
                 window.open(`http://localhost:3004/gateway/${token}`, '_blank','noopener,noreferrer,width=800,height=600'); 
               }
             }}

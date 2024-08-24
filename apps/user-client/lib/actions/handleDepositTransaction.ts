@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 
 export const handleDepositTransaction= async ({amount,provider,id}:{amount:number,provider:string,id?:string})=>{
     if(amount>0 && id && provider){
-        console.log(id)
         const secret=String(id)
         console.log(secret)
         if (!secret) {

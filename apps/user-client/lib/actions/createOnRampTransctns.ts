@@ -17,7 +17,7 @@ export async function createOnRampTransctns(amount: number, provider: string) {
   await db.onRampTransaction.create({
     data: {
       userId,
-      amount: amount,
+      amount: amount *100,
       status: "PROCESSING",
       startTime: new Date(),
       provider,
@@ -33,7 +33,7 @@ export async function createOnRampTransctns(amount: number, provider: string) {
     await db.balance.create({
       data: {
         userId: userId,
-        locked: amount,
+        locked: amount*100,
       },
     });
   } else {
@@ -43,7 +43,7 @@ export async function createOnRampTransctns(amount: number, provider: string) {
       },
       data:{
         locked:{
-          increment:amount
+          increment:amount*100
         }
       }
     });
