@@ -1,11 +1,12 @@
 "use client";
 import { Button } from "@moneymingle/ui/button";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { CircleUserRound } from 'lucide-react';
 
 export function AppbarClient() {
   const router = useRouter();
+  const session = useSession();
   return (
     <div className="flex justify-between px-16 py-2 border-b">
       <div
@@ -19,7 +20,9 @@ export function AppbarClient() {
       </div>
       <div className="flex items-center justify-center gap-6 pt-2 ">
         <div className="flex items-center gap-1 cursor-pointer" onClick={()=>{router.push("/user-details")}}>
-        <CircleUserRound /> Profile
+          {
+            session.data?.user.name ? <div>{session.data?.user.name}</div>:<><CircleUserRound /> Profile</>
+          }
         </div>
       
         <Button

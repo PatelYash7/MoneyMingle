@@ -7,8 +7,10 @@ import { useState } from "react"
 import { useSession } from "next-auth/react"
 import { addBankAccount } from "../lib/actions/addBankAccount"
 import { useRouter } from "next/navigation"
+import { setUserName } from "../lib/actions/setUserName"
 
 export function ProfilePage() {
+  const [name, setname] = useState("");
   const[bankingName,setbankingName]=useState('')
   const[password,setPassword]=useState('')
   const session = useSession();
@@ -30,7 +32,7 @@ export function ProfilePage() {
             <CardContent className="space-y-4">
               <div className="grid gap-2">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" defaultValue={`${session.data?.user.name}`} />
+                <Input id="name" onChange={(e)=>{setname(e.target.value)}} placeholder="Enter Your Name" />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -46,7 +48,11 @@ export function ProfilePage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Save Changes</Button>
+              <Button onClick={async () => {
+                // await setUserName({ name: name });
+                session.update({name:name})
+                location.reload();
+              }}>Save Changes</Button>
             </CardFooter>
           </Card>
         </div>

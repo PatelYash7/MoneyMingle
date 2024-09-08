@@ -66,6 +66,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     // Type adding needed  add fields in JWT
     async jwt({ token, user, session, trigger}) {
+      console.log("JWT",{ token, user, session, trigger})
       if(trigger==="update" && session.name){
         await prisma.user.update({
           where:{

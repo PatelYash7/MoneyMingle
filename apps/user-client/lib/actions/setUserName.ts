@@ -4,14 +4,11 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../authoptions/auth";
 
 export const setUserName = async ({
-
   name,
 }: {
-
   name: string;
 }) => {
   const session = await getServerSession(authOptions);
-
   const id =session?.user.id;
   const data = await db.user.update({
     where: {
