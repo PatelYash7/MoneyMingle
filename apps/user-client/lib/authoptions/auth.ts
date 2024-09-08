@@ -2,6 +2,7 @@ import prisma from "@moneymingle/db/client";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { NextAuthOptions } from "next-auth";
+import { signIn } from "next-auth/react";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -66,8 +67,8 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     // Type adding needed  add fields in JWT
     async jwt({ token, user, session, trigger}) {
-      console.log("JWT",{ token, user, session, trigger})
       if(trigger==="update" && session.name){
+        console.log("JWT",{ token, user, session, trigger})
         await prisma.user.update({
           where:{
             id:token.id
@@ -96,4 +97,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+  pages:{
+    signIn:'/auth/signin'
+  }
 };

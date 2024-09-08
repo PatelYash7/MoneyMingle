@@ -49,8 +49,7 @@ export function ProfilePage() {
             </CardContent>
             <CardFooter>
               <Button onClick={async () => {
-                // await setUserName({ name: name });
-                session.update({name:name})
+                await session.update({name:name})
                 location.reload();
               }}>Save Changes</Button>
             </CardFooter>

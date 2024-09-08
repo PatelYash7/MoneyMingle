@@ -1,125 +1,122 @@
-// import type {
-//   GetServerSidePropsContext,
-//   InferGetServerSidePropsType,
-// } from "next";
-// import { getCsrfToken } from "next-auth/react";
-// import Link from "next/link";
-// import { Label } from "../../../component/ui/label";
-// import { Input } from "../../../component/ui/input";
-// import { Button } from "../../../component/ui/button";
+"use client";
+import { useState } from "react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../../component/ui/card";
+import { Label } from "../../../component/ui/label";
+import { Input } from "../../../component/ui/input";
+import { Button } from "../../../component/ui/button";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-// export default function SignIn({
-//   csrfToken,
-// }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-//   return (
-//     <div className="flex min-h-[100dvh] items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
-//       <div className="w-full max-w-md mx-auto space-y-8">
-//         <div>
-//           <h2 className="mt-6 text-3xl font-bold tracking-tight text-center text-foreground">
-//             Sign in to your account
-//           </h2>
-//           <p className="mt-2 text-sm text-center text-muted-foreground">Or </p>
-//         </div>
-//         <form
-//           className="space-y-6"
-//           method="post"
-//           action="/api/auth/callback/credentials"
-//         >
-//           <div>
-//             <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-//             <Label
-//               htmlFor="email"
-//               className="block text-sm font-medium text-muted-foreground"
-//             >
-//               Email address
-//             </Label>
-//             <div className="mt-1">
-//               <Input
-//                 id="email"
-//                 name="email"
-//                 type="email"
-//                 autoComplete="email"
-//                 required
-//                 className="block w-full px-3 py-2 border rounded-md shadow-sm appearance-none border-input bg-background placeholder-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
-//                 placeholder="you@example.com"
-//               />
-//             </div>
-//           </div>
-//           <div>
-//             <Label
-//               htmlFor="phone"
-//               className="block text-sm font-medium text-muted-foreground"
-//             >
-//               Phone number
-//             </Label>
-//             <div className="mt-1">
-//               <Input
-//                 id="phone"
-//                 name="phone"
-//                 type="tel"
-//                 autoComplete="tel"
-//                 required
-//                 className="block w-full px-3 py-2 border rounded-md shadow-sm appearance-none border-input bg-background placeholder-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
-//                 placeholder="number..."
-//               />
-//             </div>
-//           </div>
-//           <div>
-//             <Label
-//               htmlFor="password"
-//               className="block text-sm font-medium text-muted-foreground"
-//             >
-//               Password
-//             </Label>
-//             <div className="mt-1">
-//               <Input
-//                 id="password"
-//                 name="password"
-//                 type="password"
-//                 autoComplete="current-password"
-//                 required
-//                 className="block w-full px-3 py-2 border rounded-md shadow-sm appearance-none border-input bg-background placeholder-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm"
-//                 placeholder="Password"
-//               />
-//             </div>
-//           </div>
-//           <div className="flex items-center justify-between">
-//             <div className="flex items-center">
-//               <Label
-//                 htmlFor="remember-me"
-//                 className="block ml-2 text-sm text-muted-foreground"
-//               >
-//                 Remember me
-//               </Label>
-//             </div>
-//             <div className="text-sm">
-//               <Link
-//                 href="#"
-//                 className="font-medium text-primary hover:text-primary/90"
-//                 prefetch={false}
-//               >
-//                 Forgot your password?
-//               </Link>
-//             </div>
-//           </div>
-//           <div>
-//             <Button
-//               type="submit"
-//               className="flex justify-center w-full px-3 py-2 text-sm font-semibold rounded-md shadow-sm bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-//             >
-//               Sign in
-//             </Button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   return {
-//     props: {
-//       csrfToken: await getCsrfToken(context),
-//     },
-//   };
-// }
+export default function SignInPage() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setphone] = useState("");
+  const [error, setError] = useState("");
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const router = useRouter();
+  return (
+    <div className="flex items-center justify-center min-h-screen p-4 bg-background text-foreground">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold text-center">
+            Sign in to MoneyMingle
+          </CardTitle>
+          <CardDescription className="text-center">
+            Enter your details to access your account
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label>Email</Label>
+            <Input
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label>Password</Label>
+            <div className="relative">
+              <Input
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute transform -translate-y-1/2 right-3 top-1/2 text-muted-foreground hover:text-foreground"
+              >
+                {showPassword ? (
+                  <EyeOffIcon className="w-4 h-4" />
+                ) : (
+                  <EyeIcon className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label>Phone Number</Label>
+            <Input
+              onChange={(e) => {
+                setphone(e.target.value);
+              }}
+              id="phone"
+              type="tel"
+              placeholder="Enter your phone number"
+              required
+            />
+          </div>
+          {error && <div className="text-red-600">{error}</div>}
+        </CardContent>
+        <CardFooter>
+          <Button
+            type="submit"
+            onClick={async (e) => {
+                e.preventDefault()
+              console.log("Hello");
+              console.log(phone);
+              console.log(password);
+              console.log(email);
+              if (phone && password && email) {
+                const res = await signIn("credentials", {
+                  phone: phone,
+                  password: password,
+                  email: email,
+                  redirect:false
+                });
+                console.log(res);
+                if (res?.ok) {
+                  router.push("/dashboard");
+                //   window.location.replace("/dashboard");
+                } else {
+                  setError("Invalid email or password. Please try again.");
+                }
+              }
+            }}
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+          >
+            Sign In
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
+  );
+}
